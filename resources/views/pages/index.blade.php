@@ -18,7 +18,7 @@
             @foreach ($comics as $comic)
                 <tr class="align-middle">
                     <td class="text-center">{{ $comic->id }}</td>
-                    <td>{{ $comic->title }}</td>
+                    <td><a href="{{ route('comics.show', $comic->id) }}">{{ $comic->title }}</a></td>
                     <td>{{ $comic->description }}</td>
                     <td class="text-center">{{ $comic->price }}</td>
                 </tr>

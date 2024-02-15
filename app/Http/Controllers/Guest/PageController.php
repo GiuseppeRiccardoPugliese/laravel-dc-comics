@@ -28,7 +28,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.create');
     }
 
     /**
@@ -39,7 +39,20 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $data = $request->all();
+
+        $newComic = new Comic();
+
+        $newComic->title = $data['title'];
+        $newComic->description = $data['description'];
+        $newComic->price = $data['price'];
+
+        //Salvo i miei dati!!
+        $newComic->save();
+
+        //Faccio il redirect
+        return redirect()->route('comics.show', $newComic->id);
     }
 
     /**

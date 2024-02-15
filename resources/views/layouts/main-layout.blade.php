@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="text-center">
+    <div>
         {{-- @include('components.header') --}}
         @yield('content')
         {{-- @include('components.footer') --}}

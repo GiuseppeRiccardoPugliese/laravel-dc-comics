@@ -31,10 +31,11 @@
                             </a>
 
                             {{-- action che si riferisce alla rotta DELETE --}}
-                            <form class="d-inline" action="{{ route('comics.destroy', $comic->id) }}" method="POST">
+                            <form id="form-delete" class="d-inline" action="{{ route('comics.destroy', $comic->id) }}"
+                                method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" class="mx-2" value="DELETE">
+                                <input type="submit" class="mx-2" value="DELETE" onclick="delComic(event)">
                             </form>
 
                         </a>
@@ -46,3 +47,18 @@
         </tbody>
     </table>
 @endsection
+
+
+<script>
+    function delComic(event) {
+        let choice = confirm('Vuoi veramente cancellarlo??');
+
+        if (choice) {
+            alert('Fatti tuoi, te lo cancello😈');
+            document.getElementById('form-delete').submit();
+        } else {
+            alert('Daje chicco!!');
+            event.preventDefault();
+        }
+    }
+</script>

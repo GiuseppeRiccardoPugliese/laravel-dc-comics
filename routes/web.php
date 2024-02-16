@@ -12,5 +12,8 @@ Route::get('/comics/create', [PageController::class, 'create'])->name('comics.cr
 //Creo la rotta per il mio CREATE (in POST)
 Route::post('/comics', [PageController::class, 'store'])->name('comics.store');
 
+//Rotta per la DELETE
+Route::delete('/comics/{id}', [PageController::class, 'destroy'])->name('comics.destroy');
+
 //Creo la rotta per la mia SHOW
 Route::get('/comics/{id}', [PageController::class, 'show'])->name('comics.show');

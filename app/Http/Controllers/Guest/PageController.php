@@ -76,7 +76,9 @@ class PageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comic = Comic::find($id);
+
+        return view('pages.edit', compact('comic'));
     }
 
     /**
@@ -88,7 +90,19 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comic = Comic::find($id);
+
+        $data = $request->all();
+
+        $comic->title = $data['title'];
+        $comic->description = $data['description'];
+        $comic->price = $data['price'];
+
+        //Salvo i miei dati!!
+        $comic->save();
+
+        //Faccio il redirect
+        return redirect()->route('comics.show', $comic->id);
     }
 
     /**

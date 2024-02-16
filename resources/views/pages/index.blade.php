@@ -22,13 +22,23 @@
                 <tr class="align-middle">
                     <td class="text-center">{{ $comic->id }}</td>
                     {{-- href del tag a che si riferisce alla rotta della mia page SHOW CRUD --}}
-                    <td><a href="{{ route('comics.show', $comic->id) }}">{{ $comic->title }}
+                    <td>
+                        <a href="{{ route('comics.show', $comic->id) }}">{{ $comic->title }}
+
+                            <a class="text-bg-primary text-decoration-none mx-2"
+                                href="{{ route('comics.edit', $comic->id) }}">
+                                EDIT
+                            </a>
+
+                            {{-- action che si riferisce alla rotta DELETE --}}
                             <form class="d-inline" action="{{ route('comics.destroy', $comic->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <input type="submit" class="mx-2" value="DELETE">
                             </form>
-                        </a></td>
+
+                        </a>
+                    </td>
                     <td>{{ $comic->description }}</td>
                     <td class="text-center">{{ $comic->price }}</td>
                 </tr>

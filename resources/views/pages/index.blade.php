@@ -23,8 +23,9 @@
                     <td class="text-center">{{ $comic->id }}</td>
                     {{-- href del tag a che si riferisce alla rotta della mia page SHOW CRUD --}}
                     <td><a href="{{ route('comics.show', $comic->id) }}">{{ $comic->title }}
-                            <form class="d-inline" action="{{ route('comics.destroy', $comic->id) }}" method="POST" @csrf
-                                @method('DELETE')>
+                            <form class="d-inline" action="{{ route('comics.destroy', $comic->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
                                 <input type="submit" class="mx-2" value="DELETE">
                             </form>
                         </a></td>

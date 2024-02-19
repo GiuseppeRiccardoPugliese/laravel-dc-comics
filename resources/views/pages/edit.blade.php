@@ -5,6 +5,17 @@
 @section('content')
     <h1 style="color: red" class="text-center fw-bold">[{{ $comic->id }}] Edit</h1>
 
+    {{-- Validation request --}}
+    @if ($errors->any())
+        <div class="alert alert-primary">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{ route('comics.update', $comic->id) }}" method="POST">
 
         @csrf

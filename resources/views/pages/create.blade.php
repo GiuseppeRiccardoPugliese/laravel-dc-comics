@@ -5,6 +5,16 @@
 @section('content')
     <h1 style="color: red" class="text-center fw-bold">New Comic</h1>
 
+    {{-- Validation request --}}
+    @if ($errors->any())
+        <div class="alert alert-primary">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form action="{{ route('comics.store') }}" method="POST">
 
         @csrf

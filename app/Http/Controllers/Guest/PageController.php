@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 //Importo il model
 use App\Models\Comic;
 
+//Importo il mio formRequest
+use App\Http\Requests\CreateComicRequest;
+
 class PageController extends Controller
 {
     /**
@@ -37,11 +40,11 @@ class PageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateComicRequest $request) //Passo allo store la richiesta di Validation del form corrente
     {
         // dd($request->all());
-        $data = $request->all();
-
+        // $data = $request->all();
+        $data = $request->validated();
         $newComic = new Comic();
 
         $newComic->title = $data['title'];
@@ -88,11 +91,11 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateComicRequest $request, $id)
     {
         $comic = Comic::find($id);
 
-        $data = $request->all();
+        $data = $request->validated();
 
         $comic->title = $data['title'];
         $comic->description = $data['description'];

@@ -41,11 +41,28 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(CreateComicRequest $request) //Passo allo store la richiesta di Validation del form corrente
+    //N.B. al posto di CreateComicRequest per farlo tutto all'interno del Main Controller, ci va Request
     {
         // dd($request->all());
         // $data = $request->validated();
         $data = $request->all();
         $newComic = new Comic();
+
+        //Validation all'interno del controller stesso, non utilizzando il formRequest
+        // $data = $request->validate(
+        //     [
+        //         'title' => 'required|string|min:4|max:255',
+        //         'description' => 'required|string',
+        //         'price' => 'required|numeric',
+        //     ],
+        //     [
+        //         'title.required' => 'Il campo Title è richiesto',
+        //         'title.min' => 'Il campo devo contenere minimo 4 caratteri',
+        //         'description' => 'Il campo Description è richiesto',
+        //         'price' => 'Il campo Price è richiesto',
+        //         'price.numeric' => 'Il campo deve essere un numero'
+        //     ]
+        // );
 
         $newComic->title = $data['title'];
         $newComic->description = $data['description'];
@@ -91,12 +108,28 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CreateComicRequest $request, $id)
+    public function update(CreateComicRequest $request, $id) //N.B. al posto di CreateComicRequest per farlo tutto all'interno del Main Controller, ci va Request
     {
         $comic = Comic::find($id);
 
         // $data = $request->validated();
         $data = $request->all();
+
+        //Validation all'interno del controller stesso, non utilizzando il formRequest
+        // $data = $request->validate(
+        //     [
+        //         'title' => 'required|string|min:4|max:255',
+        //         'description' => 'required|string',
+        //         'price' => 'required|numeric',
+        //     ],
+        //     [
+        //         'title.required' => 'Il campo Title è richiesto',
+        //         'title.min' => 'Il campo devo contenere minimo 4 caratteri',
+        //         'description' => 'Il campo Description è richiesto',
+        //         'price' => 'Il campo Price è richiesto',
+        //         'price.numeric' => 'Il campo deve essere un numero'
+        //     ]
+        // );
 
         $comic->title = $data['title'];
         $comic->description = $data['description'];

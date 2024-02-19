@@ -29,4 +29,14 @@ class CreateComicRequest extends FormRequest
             'price' => 'required|numeric',
         ];
     }
+    public function messages()
+    {
+        return [
+            'title.required' => 'Il campo Title è richiesto',
+            'title.min' => 'Il campo devo contenere minimo 4 caratteri',
+            'description' => 'Il campo Description è richiesto',
+            'price' => 'Il campo Price è richiesto',
+            'price.numeric' => 'Il campo deve essere un numero'
+        ];
+    }
 }

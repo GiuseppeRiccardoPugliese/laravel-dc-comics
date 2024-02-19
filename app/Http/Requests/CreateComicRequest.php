@@ -26,7 +26,7 @@ class CreateComicRequest extends FormRequest
         return [
             'title' => 'required|string|min:4|max:255',
             'description' => 'required|string',
-            'price' => 'required|numeric',
+            'price' => 'required|numeric|min:0',
         ];
     }
     public function messages()
@@ -36,7 +36,8 @@ class CreateComicRequest extends FormRequest
             'title.min' => 'Il campo devo contenere minimo 4 caratteri',
             'description' => 'Il campo Description è richiesto',
             'price' => 'Il campo Price è richiesto',
-            'price.numeric' => 'Il campo Price deve essere un numero'
+            'price.numeric' => 'Il campo Price deve essere un numero',
+            'price.min' => 'Il campo Price deve essere maggiore oppure uguale a 0'
         ];
     }
 }
